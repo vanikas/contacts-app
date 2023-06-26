@@ -11,10 +11,10 @@ import { ContactsService } from 'src/services/contacts.service';
 })
 export class ContactListComponent {
 
-  contactsList: Contact[] = [];
+  contactsList: Contact[] | any = [];
   form!: FormGroup;
   enableEditIndex = null;
-  newAddedContact: Contact | any;
+  newAddedContact: Object | any = { edit: false };
 
   constructor(public contactService: ContactsService, private formBuilder: FormBuilder, private router: Router) {
     this.newAddedContact = this.router.getCurrentNavigation()?.extras.state;
@@ -38,10 +38,10 @@ export class ContactListComponent {
   getContactsList() {
     this.contactService.getContacts().subscribe(response => {
       this.contactsList = response;
-      if (this.newAddedContact) {
-        this.newAddedContact.id = this.contactsList.length + 1;
-        this.contactsList.push(this.newAddedContact);
+      if (this.newAddedContact?.edit) {
+        this.contactsList = JSON.parse(localStorage.getItem("contactsList") || '');
       }
+      localStorage.setItem("contactsList", JSON.stringify(this.contactsList));
     }, (error : any)=> {
         if (error?.status == 404) {
           // show alert
@@ -52,11 +52,10 @@ export class ContactListComponent {
   update(i: number) {
     this.enableEditIndex = null;
     this.contactsList[i] = this.form.value;
+    localStorage.setItem("contactsList", JSON.stringify(this.contactsList));
   }
 
   switchEditMode(i: any) {
-    console.log(i);
-    console.log(this.contactsList);
     let user = this.contactsList[i];
     if (user) {
       this.form.setValue({ firstName: user?.firstName, lastName: user?.lastName, phone: user?.phone, id: user?.id });
@@ -67,5 +66,6 @@ export class ContactListComponent {
   delete(i: number) {
     this.enableEditIndex = null;
     this.contactsList.splice(i, 1);
+    localStorage.setItem("contactsList", JSON.stringify(this.contactsList));
   }
 }

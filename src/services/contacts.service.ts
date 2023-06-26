@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
+import { Contact } from 'src/models/contacts';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,8 @@ import { Observable, catchError, throwError } from 'rxjs';
 export class ContactsService {
 
   private apiRoutes = {
-    contacts: 'https://my-json-server.typicode.com/voramahavir/contacts-mock-response/contacts'
+    contacts: 'https://my-json-server.typicode.com/voramahavir/contacts-mock-response/contacts',
+    add: 'contacts'
   }
   constructor(private http: HttpClient) { }
 

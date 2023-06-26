@@ -46,9 +46,7 @@ describe('ContactListComponent', () => {
 
   it('should run on getContact List from back of add new contact', () => {
     comp.newAddedContact = {
-      firstName: 'Ankur',
-    lastName: 'Agarwal',
-    phone: 987654321
+      edit: true
     }
     spyOn(contactService, 'getContacts').and.returnValue(of(contactsList));
     comp.getContactsList();
@@ -56,27 +54,21 @@ describe('ContactListComponent', () => {
 });
 
   it('should run on update contact', () => {
-    const form = {
-      value: {
-        firstName: 'Anju',
-        lastName: 'Agarwal',
-        phone: '123456789'
-      }
-    };
-    comp.contactsList[0].firstName = form.value.firstName;
-    comp.update(1);
+    comp.form.setValue({ firstName: 'Anju', lastName: 'Singhal', phone: '123456789', id: 1 });
+    comp.update(0);
     expect(comp.contactsList[0].firstName).toEqual('Anju');
   });
 
   it('should run on delete contact', () => {
-    comp.delete(3);
-    expect(comp.contactsList.length).toEqual(2);
+    comp.delete(0);
+    expect(comp.contactsList.length).toEqual(0);
   });
 });
+
 const contactsList: Contact[] = [
   {
-    firstName: 'Anuj',
-    lastName: 'Agarwal',
+    firstName: 'Anju',
+    lastName: 'Singhal',
     phone: 123456789,
     id: 1
   }

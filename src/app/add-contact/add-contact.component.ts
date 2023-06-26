@@ -32,6 +32,10 @@ export class AddContactComponent implements OnInit {
   }
 
   submit() {
-    this.router.navigateByUrl('contacts', { state: this.form.value });
+    const contactsList = JSON.parse(localStorage.getItem("contactsList") || '');
+    this.form.value.id = contactsList.length + 1;
+    contactsList.push(this.form.value);
+    localStorage.setItem("contactsList", JSON.stringify(contactsList));
+    this.router.navigateByUrl('contacts', { state: { edit: true } });
   }
 }
