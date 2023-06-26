@@ -26,3 +26,23 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+# Contact-app
+
+Description
+- Created an web application of CRUD Phonebook.
+- Used Angular Framwork, HTML/CSS and basics of bootstrap for UI.
+- Use localstorage to store data locally.
+- Used Javascript/ Typescript concepts to cover the functionality.
+
+Technical
+- used different components to implement the routing concept.
+- edit/ delete is operable on row of table whereas the add is on different page.
+- Implemented Reactive forms for add page with basic required validation.
+
+Testing
+- Implemented jasmine and karma for unit testing.
+- covered more than 90% coverage.
+
+- Note: Updated readme.md file in angular project for test case command.
