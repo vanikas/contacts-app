@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand navbar-light bg-light">
+  <a class="navbar-brand" routerLink="/">Phone Book</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <button routerLink="/contacts/add" class="btn-add btn btn-sm btn-success mr-1">Add</button>
+  </div>
+</nav>
+<div class="container">
+  <form [formGroup]="form">
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th width="220px">FirstName</th>
+          <th width="220px">LastName</th>
+          <th width="220px">Phone</th>
+          <th width="220px">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let contact of contactsList; index as i;">
+          <tr>
+            <ng-container *ngIf="enableEditIndex != i">
+              <td class="table-row">{{contact.firstName}}</td>
+              <td>{{contact.lastName}}</td>
+              <td>{{contact.phone}}</td>
+              <td *ngIf="enableEditIndex != i">
+                <button type="button" class="btn btn-sm btn-primary mr-1" (click)="switchEditMode(i)">Edit</button>
+                <button class="btn-custom" class="btn btn-sm btn-danger mr-1" (click)="delete(i)">Delete</button>
+              </td>
+            </ng-container>
+            <ng-container *ngIf="enableEditIndex == i">
+              <td><input id="firstName" type="text" formControlName="firstName" /></td>
+              <td><input formControlName="lastName" /></td>
+              <td><input formControlName="phone" /></td>
+              <td>
+                <button (click)="update(i)" class="btn btn-sm btn-primary mr-1">Update</button>
+                <button class="btn-custom" (click)="delete(i)" class="btn btn-sm btn-danger mr-1">Delete</button>
+              </td>
+            </ng-container>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </form>
+</div>

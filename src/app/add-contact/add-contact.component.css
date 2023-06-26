@@ -1,0 +1,9 @@
+p.navbar-brand {
+    margin-left: 7%;
+}
+.container {
+    .btn-submit {
+        margin-top: 7px;
+        margin-right: 7px;
+    }
+}

@@ -1,0 +1,30 @@
+a.navbar-brand {
+    margin-left: 7%;
+}
+.navbar-expand .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto;
+    flex-direction: row-reverse;
+    margin-right: 16%;
+}
+.container {
+    margin-top: 40px;
+    .btn-custom {
+    margin-top: 1px;
+    margin-right: 15px;
+    margin-left: 10px;
+    }
+    .btn-add {
+        margin-top: 5px;
+    }
+    .form-control {
+        width: 20%;
+    } 
+    .custom-table {
+        width: 100%;
+        .btn.btn-sm.btn-primary.mr-1 {
+            margin-right: 8px;
+            width: 26%;
+        }
+    }
+}
