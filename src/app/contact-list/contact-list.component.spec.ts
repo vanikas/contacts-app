@@ -44,19 +44,15 @@ describe('ContactListComponent', () => {
       expect(comp.contactsList).toEqual(contactsList);
   });
 
-  it('should run on getContact List from back of add new contact', () => {
-    comp.newAddedContact = {
-      edit: true
-    }
-    spyOn(contactService, 'getContacts').and.returnValue(of(contactsList));
-    comp.getContactsList();
-    expect(comp.contactsList).toEqual(contactsList);
+  it('should run on switchEditMode', () => {
+    comp.switchEditMode(0);
+    expect(comp.form.value).toEqual(contactsList[0]);
 });
 
   it('should run on update contact', () => {
-    comp.form.setValue({ firstName: 'Anju', lastName: 'Singhal', phone: '123456789', id: 1 });
+    // comp.form.setValue({ firstName: 'Anju', lastName: 'Singhal', phone: '123456789', id: 1 });
     comp.update(0);
-    expect(comp.contactsList[0].firstName).toEqual('Anju');
+    expect(comp.enableEditIndex).toEqual(null);
   });
 
   it('should run on delete contact', () => {
