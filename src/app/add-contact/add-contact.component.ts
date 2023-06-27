@@ -38,4 +38,8 @@ export class AddContactComponent implements OnInit {
     localStorage.setItem("contactsList", JSON.stringify(contactsList));
     this.router.navigateByUrl('contacts', { state: { edit: true } });
   }
+
+  back() {
+    this.router.navigateByUrl('contacts', { state: { edit: true } });
+  }
 }

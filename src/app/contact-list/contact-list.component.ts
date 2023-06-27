@@ -39,6 +39,7 @@ export class ContactListComponent {
     this.contactService.getContacts().subscribe(response => {
       this.contactsList = response;
       if (this.newAddedContact?.edit) {
+        // storing data locally using local storage
         this.contactsList = JSON.parse(localStorage.getItem("contactsList") || '');
       }
       localStorage.setItem("contactsList", JSON.stringify(this.contactsList));
@@ -64,6 +65,7 @@ export class ContactListComponent {
   }
 
   delete(i: number) {
+    // deleting by index
     this.enableEditIndex = null;
     this.contactsList.splice(i, 1);
     localStorage.setItem("contactsList", JSON.stringify(this.contactsList));
